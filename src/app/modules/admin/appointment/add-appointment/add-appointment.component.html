@@ -48,6 +48,17 @@
                     [svgIcon]="'heroicons_solid:phone'"></mat-icon>
             </mat-form-field>
             <mat-form-field
+                class="flex-auto">
+                <mat-label>Start Date</mat-label>
+                <input
+                    matInput
+                    [matDatepicker]="picker1">
+                <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field
                 class="flex-auto gt-xs:pl-3">
                 <mat-label>Phone</mat-label>
                 <input matInput type="time">

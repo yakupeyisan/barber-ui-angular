@@ -1,0 +1,33 @@
+
+
+
+    
+    <form 
+    [formGroup]="updateForm"
+    #updateCategoryForm="ngForm"
+    class="flex flex-col mt-2 p-2 pb-4 overflow-hidden">
+            <div class="prose prose-sm ">
+                <h2>Update Category</h2>
+            </div>
+            <mat-form-field
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:hashtag'"></mat-icon>
+                <mat-error *ngIf="updateForm.get('name').hasError('required')">
+                    Name is required
+                </mat-error>
+            </mat-form-field>
+            <button mat-flat-button color="accent" class="mb-2" [disabled]="updateForm.disabled" (click)="updateCategory()">
+                <span *ngIf="!updateForm.disabled">
+                    Update
+                </span>
+                <mat-progress-spinner
+                    *ngIf="updateForm.disabled"
+                    [diameter]="24"
+                    [mode]="'indeterminate'"></mat-progress-spinner>
+            </button>
+    </form>

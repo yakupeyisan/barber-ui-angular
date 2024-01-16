@@ -35,9 +35,6 @@ export class AppointmentComponent implements OnInit {
             height:'60vh',
             width:"60%",
             autoFocus: false,
-            data     : {
-                note: {},
-            },
         });
     }
     getTotalAmount(dto:AppointmentServiceDto[]){

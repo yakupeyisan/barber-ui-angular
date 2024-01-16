@@ -8,13 +8,25 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { UserService } from 'app/core/services';
 import { User } from 'app/core/models';
 
 @Component({
   selector: 'app-add-appointment',
   standalone: true,
-  imports: [CommonModule,MatIconModule, FormsModule, MatFormFieldModule, NgClass, MatInputModule, TextFieldModule, ReactiveFormsModule, MatButtonModule, MatSelectModule],
+  imports: [CommonModule,
+        MatIconModule,
+        FormsModule,
+        MatFormFieldModule,
+        NgClass,
+        MatInputModule,
+        TextFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatDatepickerModule
+    ],
   templateUrl: './add-appointment.component.html',
   styleUrl: './add-appointment.component.scss'
 })
