@@ -9,8 +9,7 @@ import { environment } from "app/environments/environment";
 })
 export class AppointmentService extends BaseTimeStampService<Appointment>{
     constructor(){
-       super();
-       this.path="appointments";
+       super("appointments");
     }
     getAllNotDeletedWithUserAndServices():Observable<DataResponse<AppointmentWithUserAndServices[]>>{
         return this.httpClient.get<DataResponse<AppointmentWithUserAndServices[]>>(environment.getApiUrl('appointments/get-all-not-deleted-with-user-and-services'))

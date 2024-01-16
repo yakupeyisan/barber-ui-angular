@@ -7,7 +7,6 @@ import { Category } from "../models";
 })
 export class CategoryService extends BaseService<Category>{
     constructor(){
-       super();
-       this.path="categories";
+       super("categories");
     }
 }

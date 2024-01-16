@@ -11,11 +11,13 @@ export interface Appointment extends BaseTimeStampModel<number>{
     isCompleted:boolean|null;
 } 
 
-export interface AppointmentServices extends Appointment{
-    services:Service[];
+export interface AppointmentServiceDto{
+    services:Service;
+    serviceId:number|null;
+    appointmentId:number|null;
     amount:number|null;
 }
 export interface AppointmentWithUserAndServices extends Appointment{
-    services:Service[];
+    appointmentServices:AppointmentServiceDto[];
     user:User;
 }

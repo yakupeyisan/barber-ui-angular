@@ -7,7 +7,6 @@ import { Claim } from "../models";
 })
 export class ClaimService extends BaseService<Claim>{
     constructor(){
-       super();
-       this.path="claims";
+       super("claims");
     }
 }

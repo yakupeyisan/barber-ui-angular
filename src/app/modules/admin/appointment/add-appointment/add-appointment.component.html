@@ -2,86 +2,60 @@
 <div class="flex-auto p-6 sm:p-10">
 
 
+
     <div class="prose prose-sm ">
         <h2>Appearance</h2>
     </div>
-
+    
     <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
         <div class="flex flex-col gt-xs:flex-row">
             <mat-form-field
-                [ngClass]="formFieldHelpers"
-                class="flex-auto gt-xs:pr-3">
-                <mat-label>First name</mat-label>
-                <input matInput>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-            </mat-form-field>
-            <mat-form-field
-                [ngClass]="formFieldHelpers"
                 class="flex-auto gt-xs:pl-3">
-                <mat-label>Last name</mat-label>
+                <mat-label>Select User</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{user.firstName+' '+user.lastName}}</mat-option>
+                </mat-select>
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:user'"></mat-icon>
+            </mat-form-field>
+            <mat-form-field
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Full Name</mat-label>
                 <input matInput>
                 <mat-icon
                     class="icon-size-5"
                     matSuffix
                     [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
             </mat-form-field>
-        </div>
-        <div class="flex">
             <mat-form-field
-                [ngClass]="formFieldHelpers"
-                class="flex-auto">
-                <mat-label>Address</mat-label>
-                <textarea
-                    matInput
-                    cdkTextareaAutosize
-                    [cdkAutosizeMinRows]="3"></textarea>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:map-pin'"></mat-icon>
-            </mat-form-field>
-        </div>
-        <div class="flex flex-col gt-md:flex-row">
-            <mat-form-field
-                [ngClass]="formFieldHelpers"
-                class="flex-auto gt-md:pr-3">
-                <mat-label>City</mat-label>
+                class="flex-auto gt-xs:pl-3">
+                <mat-label>Email</mat-label>
                 <input matInput>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:map-pin'"></mat-icon>
-            </mat-form-field>
-            <mat-form-field
-                [ngClass]="formFieldHelpers"
-                class="flex-auto gt-md:pl-3">
-                <mat-label>State</mat-label>
-                <input matInput>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:map-pin'"></mat-icon>
-            </mat-form-field>
-        </div>
-        <div class="flex">
-            <mat-form-field
-                [ngClass]="formFieldHelpers"
-                class="flex-auto">
-                <mat-label>Postal code</mat-label>
-                <input
-                    matInput
-                    maxlength="5"
-                    #postalCode>
-                <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
                 <mat-icon
                     class="icon-size-5"
                     matSuffix
                     [svgIcon]="'heroicons_solid:envelope'"></mat-icon>
             </mat-form-field>
+            <mat-form-field
+                class="flex-auto gt-xs:pl-3">
+                <mat-label>Phone</mat-label>
+                <input matInput>
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+            </mat-form-field>
+            <mat-form-field
+                class="flex-auto gt-xs:pl-3">
+                <mat-label>Phone</mat-label>
+                <input matInput type="time">
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:clock'"></mat-icon>
+            </mat-form-field>
         </div>
     </form>
-
 </div>

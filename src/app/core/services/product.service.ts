@@ -7,7 +7,6 @@ import { Product } from "../models";
 })
 export class ProductService extends BaseTimeStampService<Product>{
     constructor(){
-       super();
-       this.path="products";
+       super("products");
     }
 }

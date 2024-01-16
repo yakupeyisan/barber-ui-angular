@@ -49,15 +49,15 @@
                                         <th  class="w-24 text-right">Operations:</th>
                                         <td>
                                             <div class="flex flex-wrap items-center mx-1">
-                                                <div *ngFor="let service of appointment.services" class="m-1 py-0.5 px-3 rounded-full text-sm font-medium text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
-                                                    {{service.name}}
+                                                <div *ngFor="let serviceDto of appointment.appointmentServices" class="m-1 py-0.5 px-3 rounded-full text-sm font-medium text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
+                                                    {{serviceDto.service.name}}
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th  class="w-24 text-right">Amount:</th>
-                                        <td>500₺</td>
+                                        <td>{{getTotalAmount(appointment.appointmentServices)}}</td>
                                     </tr>
                                 </table>
                             </div>

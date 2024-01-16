@@ -8,11 +8,14 @@ import { environment } from "app/environments/environment";
 export abstract class BaseService<T>{
     private readonly _httpClient:HttpClient = inject(HttpClient);
     private _path:string='unknown';
+    constructor(path:string){
+        this._path=path;
+    }
     get httpClient(){
         return this._httpClient;
     }
-    set path(path:string){
-        this._path=path;
+    get path(){
+        return this._path;
     }
     getAll():Observable<DataResponse<T[]>>{
         return this._httpClient.get<DataResponse<T[]>>(environment.getApiUrl(`${this._path}/get-all`))
@@ -45,6 +48,9 @@ export abstract class BaseService<T>{
 
 @Injectable({providedIn:"root"})
 export abstract class BaseTimeStampService<T> extends BaseService<T>{
+    constructor(path:string){
+        super(path)
+    }
     getAllDeleted():Observable<DataResponse<T[]>>{
         return this.httpClient.get<DataResponse<T[]>>(environment.getApiUrl(`${this.path}/get-all-deleted`))
     }

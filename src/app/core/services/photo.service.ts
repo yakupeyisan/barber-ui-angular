@@ -7,7 +7,6 @@ import { Photo } from "../models";
 })
 export class PhotoService extends BaseService<Photo>{
     constructor(){
-       super();
-       this.path="photos";
+       super("photos");
     }
 }

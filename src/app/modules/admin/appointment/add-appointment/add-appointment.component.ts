@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +8,8 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { UserService } from 'app/core/services';
+import { User } from 'app/core/models';
 
 @Component({
   selector: 'app-add-appointment',
@@ -16,7 +18,18 @@ import { MatOptionModule } from '@angular/material/core';
   templateUrl: './add-appointment.component.html',
   styleUrl: './add-appointment.component.scss'
 })
-export class AddAppointmentComponent {
+export class AddAppointmentComponent  implements OnInit{
     formFieldHelpers: string[] = [''];
+    users:User[]=[]
+    constructor(private userService:UserService){}
+    ngOnInit(): void {
+        this.getUsers();
+    }
+
+    getUsers(){
+        this.userService.getAllNotDeleted().subscribe(result=>{
+            this.users=result.data;
+        })
+    }
 
 }

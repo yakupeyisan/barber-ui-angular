@@ -7,7 +7,6 @@ import { Leave } from "../models";
 })
 export class LeaveService extends BaseService<Leave>{
     constructor(){
-       super();
-       this.path="leaves";
+       super("leaves");
     }
 }

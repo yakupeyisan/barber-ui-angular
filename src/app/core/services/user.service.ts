@@ -10,8 +10,7 @@ export class UserService extends BaseTimeStampService<User>{
     private _user: ReplaySubject<User> = new ReplaySubject<User>(1);
 
     constructor(){
-        super();
-        this.path="users";
+        super("users");
      }
      
     set user(value: User)

@@ -7,7 +7,6 @@ import { Order } from "../models";
 })
 export class OrderService extends BaseTimeStampService<Order>{
     constructor(){
-       super();
-       this.path="orders";
+       super("orders");
     }
 }
