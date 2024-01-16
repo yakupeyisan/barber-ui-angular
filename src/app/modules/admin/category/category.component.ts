@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
 import { BarberConfirmationService } from '@barber/services/confirmation';
+import { BarberLoadingBarComponent } from '@barber/components/loading-bar';
+import { BarberLoadingService } from '@barber/services/loading';
 
 @Component({
   selector: 'app-category',
@@ -17,23 +19,30 @@ import { BarberConfirmationService } from '@barber/services/confirmation';
     CommonModule,
     MatButtonModule,
     BarberCardComponent,
-    MatIconModule
+    MatIconModule,
+    BarberLoadingBarComponent
 ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
 export class CategoryComponent implements OnInit {
     categories:Category[]=[]
-    constructor(private categoryService:CategoryService, private matDialog:MatDialog,private barberConfirmationService:BarberConfirmationService){}
+    constructor(private categoryService:CategoryService, 
+        private matDialog:MatDialog,
+        private barberConfirmationService:BarberConfirmationService,
+        private barberLoadingService:BarberLoadingService){}
     ngOnInit(): void {
         this.getList();
     }
     getList(){
+        this.barberLoadingService.show();
         this.categoryService.getAll().subscribe(result=>{
             this.categories=result.data
+            this.barberLoadingService.hide();
         })
     }
     showAdd(){
+        this.barberLoadingService.show();
         let dialogRef= this.matDialog.open(AddCategoryComponent, {
             height:'228px',
             width:"60%",
@@ -44,6 +53,7 @@ export class CategoryComponent implements OnInit {
         })
     }
     showUpdate(category:Category){
+        this.barberLoadingService.show();
         let dialogRef= this.matDialog.open(UpdateCategoryComponent, {
             height:'228px',
             width:"60%",
