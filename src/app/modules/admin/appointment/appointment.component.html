@@ -1,0 +1,79 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+                <!-- Header -->
+                <div class="flex justify-end mb-2">
+                    <!-- New note -->
+                    <button
+                        class="ml-4 px-1 sm:px-4 min-w-10"
+                        mat-flat-button
+                        [color]="'primary'" 
+                        (click)="createNew()">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                        <span class="hidden sm:inline-block ml-2">Create New</span>
+                    </button>
+                </div>
+                <div class="flex-auto  sm:columns-2 md:columns-3 ">
+                    <barber-card class="flex flex-col filter-article mb-3" *ngFor="let appointment of appointments">
+                        <div class="m-8">
+                            <div class="text-2xl font-semibold leading-tight">
+                                {{appointment.user?.firstName+' '+appointment.user?.lastName}}
+                            </div>
+                            <div class="mt-4">
+                                <table>
+                                    <tr>
+                                        <th class="w-24 text-right">Full Name:</th>
+                                        <td>{{appointment.fullName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-24 text-right">Phone:</th>
+                                        <td><a [href]="'tel:'+appointment.phone">{{appointment.phone}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-24 text-right">Email:</th>
+                                        <td><a [href]="'mailto:'+appointment.email">{{appointment.email}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-24 text-right">Start Date:</th>
+                                        <td>{{appointment.startDate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th  class="w-24 text-right">End Date:</th>
+                                        <td>{{appointment.endDate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th  class="w-24 text-right">Operations:</th>
+                                        <td>
+                                            <div class="flex flex-wrap items-center mx-1">
+                                                <div *ngFor="let service of appointment.services" class="m-1 py-0.5 px-3 rounded-full text-sm font-medium text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
+                                                    {{service.name}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th  class="w-24 text-right">Amount:</th>
+                                        <td>500₺</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="flex justify-end mt-2">
+                                <button
+                                    class="flex -ml-2"
+                                    mat-flat-button
+                                    [color]="'primary'">
+                                    <mat-icon [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                                    Check Completed
+                                </button>
+                            </div>
+                        </div>
+                    </barber-card>
+                </div>
+
+    </div>
+
+</div>
