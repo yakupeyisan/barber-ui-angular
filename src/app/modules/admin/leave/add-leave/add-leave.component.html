@@ -1,0 +1,33 @@
+
+
+
+
+    <form
+    [formGroup]="addForm"
+    #addLeaveForm="ngForm"
+    class="flex flex-col mt-2 p-2 pb-4 overflow-hidden">
+            <div class="prose prose-sm ">
+                <h2>Add Leave</h2>
+            </div>
+            <mat-form-field
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:hashtag'"></mat-icon>
+                <mat-error *ngIf="addForm.get('name').hasError('required')">
+                    Name is required
+                </mat-error>
+            </mat-form-field>
+            <button mat-flat-button color="primary" class="mb-2" [disabled]="addForm.disabled" (click)="addLeave()">
+                <span *ngIf="!addForm.disabled">
+                    Create
+                </span>
+                <mat-progress-spinner
+                    *ngIf="addForm.disabled"
+                    [diameter]="24"
+                    [mode]="'indeterminate'"></mat-progress-spinner>
+            </button>
+    </form>

@@ -1,0 +1,44 @@
+
+
+
+
+    <form
+    [formGroup]="updateForm"
+    #updateLeaveForm="ngForm"
+    class="flex flex-col mt-2 p-2 pb-4 overflow-hidden">
+            <div class="prose prose-sm ">
+                <h2>Update Leave</h2>
+            </div>
+            <mat-form-field
+                class="flex-auto gt-xs:pl-3">
+                <mat-label>Select User</mat-label>
+                <mat-select formControlName="userId">
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{user.firstName+' '+user.lastName}}</mat-option>
+                </mat-select>
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:user'"></mat-icon>
+            </mat-form-field>
+            <mat-form-field
+                class="flex-auto">
+                <mat-label>Start Date</mat-label>
+                <input
+                    matInput
+                    [min]="minDate"
+                    [matDatepicker]="picker1">
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <button mat-flat-button color="accent" class="mb-2" [disabled]="updateForm.disabled" (click)="updateLeave()">
+                <span *ngIf="!updateForm.disabled">
+                    Update
+                </span>
+                <mat-progress-spinner
+                    *ngIf="updateForm.disabled"
+                    [diameter]="24"
+                    [mode]="'indeterminate'"></mat-progress-spinner>
+            </button>
+    </form>

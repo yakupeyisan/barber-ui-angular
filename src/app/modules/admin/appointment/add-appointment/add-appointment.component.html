@@ -1,72 +1,85 @@
-
-<div class="flex-auto p-6 sm:p-10">
-
-
+<form
+[formGroup]="addForm"
+#addAppointmentForm="ngForm"
+class="flex flex-col mt-2 p-2 pb-1 overflow-y-auto">
 
     <div class="prose prose-sm ">
         <h2>Appearance</h2>
     </div>
-    
-    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
-        <div class="flex flex-col gt-xs:flex-row">
-            <mat-form-field
-                class="flex-auto gt-xs:pl-3">
-                <mat-label>Select User</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let user of users" [value]="user.id">{{user.firstName+' '+user.lastName}}</mat-option>
-                </mat-select>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:user'"></mat-icon>
-            </mat-form-field>
-            <mat-form-field
-                class="flex-auto gt-xs:pr-3">
-                <mat-label>Full Name</mat-label>
-                <input matInput>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-            </mat-form-field>
-            <mat-form-field
-                class="flex-auto gt-xs:pl-3">
-                <mat-label>Email</mat-label>
-                <input matInput>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:envelope'"></mat-icon>
-            </mat-form-field>
-            <mat-form-field
-                class="flex-auto gt-xs:pl-3">
-                <mat-label>Phone</mat-label>
-                <input matInput>
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:phone'"></mat-icon>
-            </mat-form-field>
-            <mat-form-field
-                class="flex-auto">
-                <mat-label>Start Date</mat-label>
-                <input
-                    matInput
-                    [matDatepicker]="picker1">
-                <mat-datepicker-toggle
-                    matSuffix
-                    [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field
-                class="flex-auto gt-xs:pl-3">
-                <mat-label>Phone</mat-label>
-                <input matInput type="time">
-                <mat-icon
-                    class="icon-size-5"
-                    matSuffix
-                    [svgIcon]="'heroicons_solid:clock'"></mat-icon>
-            </mat-form-field>
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field
+            class="flex-auto gt-xs:pr-3">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName">
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field
+            class="flex-auto gt-xs:pl-3">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:envelope'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field
+            class="flex-auto gt-xs:pl-3">
+            <mat-label>Phone</mat-label>
+            <input matInput maxlength="10" placeholder="5554443333" formControlName="phoneNumber">
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field
+            class="flex-auto gt-xs:pl-3">
+            <mat-label>Select User</mat-label>
+            <mat-select formControlName="userId">
+                <mat-option *ngFor="let user of users" [value]="user.id">{{user.firstName+' '+user.lastName}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:user'"></mat-icon>
+        </mat-form-field>
+        <mat-form-field
+            class="flex-auto gt-xs:pl-3">
+            <mat-label>Select Service</mat-label>
+            <mat-select multiple="multiple" formControlName="services">
+                <mat-option *ngFor="let service of services" [value]="service.id">{{service.name}}</mat-option>
+            </mat-select>
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:user'"></mat-icon>
+        </mat-form-field>
+        <div *ngIf="getSelectedServices().length>0">
+            <span>Total Price   : {{getServiceTotalPrice()|currency:'₺'}}</span>-
+            <span>Total Duration: {{getServiceTotalDuration()}} dk</span>
         </div>
-    </form>
-</div>
+        <mat-form-field
+            class="flex-auto">
+            <mat-label>Start Date</mat-label>
+            <input
+                matInput
+                [min]="minDate"
+                [matDatepicker]="picker1">
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field
+            class="flex-auto gt-xs:pl-3">
+            <mat-label>Phone</mat-label>
+            <input matInput type="time">
+            <mat-icon
+                class="icon-size-5"
+                matSuffix
+                [svgIcon]="'heroicons_solid:clock'"></mat-icon>
+        </mat-form-field>
+    </div>
+</form>

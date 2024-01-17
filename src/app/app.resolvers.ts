@@ -1,4 +1,4 @@
-import { inject } from '@angular/core';
+import {  inject } from '@angular/core';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { forkJoin } from 'rxjs';
 

@@ -1,0 +1,37 @@
+<barber-loading-bar ></barber-loading-bar>
+<div class="flex flex-col flex-auto min-w-0 h-full">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10 h-full">
+            <div class="flex justify-end">
+                <button mat-flat-button color="primary" class="mb-2" (click)="showAdd()">
+                    <mat-icon>add</mat-icon> Create New
+                </button>
+            </div>
+            <barber-card class="flex mb-3 bg-inherit">
+                <div class="m-2 font-bold border-e-2 w-1/6 lg:w-1/6">Id</div>
+                <div class="m-2 font-bold border-e-2 w-1/6 lg:w-2/6">User</div>
+                <div class="m-2 font-bold border-e-2 w-1/6 lg:w-1/6">Start Date</div>
+                <div class="m-2 font-bold border-e-2 w-1/6 lg:w-1/6">End Date</div>
+                <div class="m-2 font-bold w-2/6 lg:w-1/6">Operations</div>
+            </barber-card>
+            <div class="flex-auto overflow-y-auto" style="height: calc( 100vh - 215px)">
+                <barber-card class="flex mb-3" *ngFor="let leave of leaves">
+                    <div class="m-4 w-1/6 lg:w-1/6  border-e-2">{{leave.id}}</div>
+                    <div class="m-4 w-1/6 lg:w-2/6  border-e-2">{{leave.userId}}</div>
+                    <div class="m-4 w-1/6 lg:w-1/6  border-e-2">{{leave.startDate}}</div>
+                    <div class="m-4 w-1/6 lg:w-1/6  border-e-2">{{leave.endDate|date:'yyyy-MM-dd HH:mm'}}</div>
+                    <div class="m-2 w-2/6 lg:w-1/6 flex justify-end">
+                        <button mat-flat-button color="accent" class="mr-1" (click)="showUpdate(leave)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-flat-button color="warn" (click)="deleteDialog(leave)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </barber-card>
+            </div>
+
+    </div>
+
+</div>
